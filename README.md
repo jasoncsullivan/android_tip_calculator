@@ -18,19 +18,17 @@ The following **required** functionality is completed:
 The following **extensions** are implemented:
 
 * [x] Custom colors palette selected
-* [ ] List anything else that you did to improve the app functionality or design!
+* [x] Add the ability to split the bill across any number of people
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+![](demo.gif)
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+None.
 
 ## License
 
