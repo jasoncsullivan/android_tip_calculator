@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
                 tvTipPercent.text = "$progress%"
                 updateTipDescription(progress)
                 computeTipAndTotal()
+                computePerPerson()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 Log.i(TAG, "afterTextChanged: $s")
                 computeTipAndTotal()
+                computePerPerson()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -52,6 +54,29 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+
+        tvSplitNumber.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                computePerPerson()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+    }
+
+    private fun computePerPerson() {
+
+        if (tvTotalAmount.text.toString().isEmpty() || tvSplitNumber.text.toString().isEmpty()) {
+            tvPerPersonAmount.text = ""
+        } else {
+            tvPerPersonAmount.text = "%.2f".format(tvTotalAmount.text.toString().toDouble() / tvSplitNumber.text.toString().toDouble())
+        }
     }
 
     private fun updateTipDescription(tipPercent: Int) {
@@ -76,6 +101,7 @@ class MainActivity : AppCompatActivity() {
         if (etBase.text.toString().isEmpty()) {
             tvTipAmount.text = ""
             tvTotalAmount.text = ""
+            tvPerPersonAmount.text = ""
         } else {
             val baseAmount = etBase.text.toString().toDouble()
             val tipPercent = seekBarTip.progress / 100.0
@@ -85,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             tvTipAmount.text = "%.2f".format(tipAmount)
             tvTotalAmount.text = "%.2f".format(totalAmount)
         }
+
 
     }
 }
